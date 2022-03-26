@@ -10,14 +10,14 @@ struct command {
 std::map<std::string, std::string> directory;
 
 void telephone_directory() {
-  directory.insert(std::pair<std::string, std::string>("12-23-34", "Ivanov"));
-  directory.insert(std::pair<std::string, std::string>("54-05-02", "Petrov"));
-  directory.insert(std::pair<std::string, std::string>("28-82-01", "Sidorov"));
-  directory.insert(std::pair<std::string, std::string>("23-90-03", "Ivanov"));
+  directory.insert(std::make_pair("12-23-34", "Ivanov"));
+  directory.insert(std::make_pair("54-05-02", "Petrov"));
+  directory.insert(std::make_pair("28-82-01", "Sidorov"));
+  directory.insert(std::make_pair("23-90-03", "Ivanov"));
 }
 
 void fill_telephone_directory(std::string telephone, std::string person) {
-  directory.insert(std::pair<std::string, std::string>(telephone, person));
+  directory.insert(std::make_pair(telephone, person));
 }
 
 int main() {
