@@ -1,7 +1,6 @@
 #include <iostream>
 #include <map>
 #include <string>
-#include <vector>
 
 std::map<std::string, std::string> directory;
 
@@ -22,21 +21,19 @@ std::string parsData(std::string data, int part) {
   }
   data = data.substr(0, data.find(" "));
   std::cout << "Phone - " << data << std::endl;
-
   return data;
 }
 
 std::string parsePartOne(std::string data) {
   std::string strPatrOne;
   return strPatrOne = data.substr(0, data.find(" "));
-
-  // std::cout << "strPatrOne: " << strPatrOne << std::endl;
 }
 
 std::string parsePartTwo(std::string data) {
   std::string strPartTwo;
+  strPartTwo = data.erase(0, data.find(" "));
+
   return strPartTwo = data.substr((data.find(" ") + 1), data.length());
-  // std::cout << "strPartTwo: " << strPartTwo << std::endl;
 }
 
 int main() {
@@ -47,37 +44,26 @@ int main() {
   bool access = true;
   telephone_directory();
   std::cout << "Enter data" << std::endl;
-  std::cin >> data;
-  // std::vector<std::string> tmpData;
+  std::getline(std::cin, data);
   phone = parsePartOne(data);
   person = parsePartTwo(data);
 
-  std::cout << "Phone - " << phone << std::endl;
-  std::cout << "Person - " << person << std::endl;
+  if (!phone.empty() && !person.empty()) {
+    fill_telephone_directory(phone, person);
+  } else {
+    for (std::map<std::string, std::string>::iterator it = directory.begin(); it != directory.end(); it++) {
+      if (it->first == data) {
+        std::cout << "Telephone - " << it->first << " Person " << it->second << std::endl;
+        std::cout << std::endl;
+      } else if (it->second == data) {
+        std::cout << "Telephone - " << it->first << " Person " << it->second << std::endl;
+        std::cout << std::endl;
+      }
+    }
+  }
 
-  // for (std::map<std::string, std::string>::iterator it = directory.begin(); it != directory.end(); it++) {
-  //   if (it->first == data) {
-  //     std::cout << "Telephone - " << it->first << " Person " << it->second << std::endl;
-  //     std::cout << std::endl;
-  //     access = false;
-  //   } else if (it->second == data) {
-  //     std::cout << "Telephone - " << it->first << " Person " << it->second << std::endl;
-  //     std::cout << std::endl;
-  //     access = false;
-  //   }
-  // }
-  // if (access == true)
-  //   for (std::map<std::string, std::string>::iterator it = directory.begin(); it != directory.end(); it++) {
-  //     if (it->first != data) {
-  //       std::cout << "Enter person:" << std::endl;
-  //       std::cin >> person;
-  //       fill_telephone_directory(data, person);
-  //       break;
-  //     }
-  //   }
-
-  // for (std::map<std::string, std::string>::iterator it = directory.begin(); it != directory.end(); it++) {
-  //   std::cout << "Telephone - " << it->first << " Person " << it->second << std::endl;
-  // }
+  for (std::map<std::string, std::string>::iterator it = directory.begin(); it != directory.end(); it++) {
+    std::cout << "Telephone - " << it->first << " Person " << it->second << std::endl;
+  }
   return 0;
 }
