@@ -4,7 +4,7 @@
 
 std::map<std::string, std::string> directory;
 
-void telephone_directory() {
+void initialize_telephone_directory() {
   directory.insert(std::make_pair("12-23-34", "Ivanov"));
   directory.insert(std::make_pair("54-05-02", "Petrov"));
   directory.insert(std::make_pair("28-82-01", "Sidorov"));
@@ -42,7 +42,7 @@ int main() {
   std::string phone;
   std::string person;
   bool access = true;
-  telephone_directory();
+  initialize_telephone_directory();
   std::cout << "Enter data" << std::endl;
   std::getline(std::cin, data);
   phone = parsePartOne(data);
